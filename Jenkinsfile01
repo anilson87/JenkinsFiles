@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+    environment {
+       STAGE = 'Copy Repo' 
+    }
+    stages {
+        stage('Copy Repo') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/anilson87/kubernetescode.git']])
+                echo "Current build number is ${BUILD_NUMBER}"
+                echo "Current stage is ${STAGE}"
+    
+                
+            }
+        }
+         stage('Display Readme file') {
+            steps {
+                sh 'cat README.md'
+            }
+        }
+        stage('List S3 buckets') {
+            steps {
+                sh 'aws s3 ls'
+            }
+        }
+    }
+    post {
+        always {
+            echo 'Bye'
+        }
+    }
+}
