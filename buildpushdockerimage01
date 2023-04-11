@@ -1,0 +1,8 @@
+Choose Pipeline script from SCM to use Jenkins file from Github
+
+Repository URL - https://github.com/anilson87/devopscourse.git
+
+Branch - */main
+
+Script Path - pushdockerimage/Jenkinsfile
+(https://github.com/anilson87/devopscourse/blob/main/pushdockerimage/Jenkinsfile)
