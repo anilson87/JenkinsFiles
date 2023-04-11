@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Copy Git Repo') {
+            steps {
+                git branch: 'main', url: 'https://github.com/anilson87/devopscourse.git'
+            }
+        }
+        stage ('Display Readme') {
+            steps {
+                sh 'cat pushdockerimage/README.md'
+            }
+        }
+        stage ('Trigger downstream job') {
+            steps {
+                build job: 'downstreamjob', parameters: [string(name: 'BUILDNUMBER', value: env.BUILD_NUMBER)]
+            }
+        }
+    }
+}
