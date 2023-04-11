@@ -19,3 +19,5 @@ pipeline {
         }
     }
 }
+
+# Build Trigger - Github hook trigger
