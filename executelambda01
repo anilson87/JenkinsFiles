@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Invoke Lambda') {
+            steps {
+                sh 'aws lambda invoke --function-name getbitcoinprice response.json --region us-east-1'
+            }
+        }
+        stage('Display Output') {
+            steps {
+                sh 'cat response.json'
+            }
+        }
+    }
+}
